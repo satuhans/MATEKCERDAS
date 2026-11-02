@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KODE 3 - 3 WAJIB + 1 REBUTAN BARU - 30 DETIK - SOAL SAJA - SMAN3 BRILLIANT</title>
+<style>
+:root{--gold:#facc15;--danger:#ef4444}
+body{margin:0;background:#0f172a;color:#fff;font-family:Segoe UI,Arial;overflow:hidden}
+.header{position:fixed;top:0;left:0;right:0;height:66px;background:#0f172a;border-bottom:3px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 14px;z-index:20}
+.logo-head{display:flex;align-items:center;gap:10px}
+.logo-head img{width:48px;height:48px;background:#fff;border-radius:10px;padding:3px}
+.logo-head h1{margin:0;font-size:15px;color:var(--gold)}
+.tabs{display:flex;gap:6px}
+.tab{padding:7px 12px;border-radius:999px;background:#1e293b;border:1px solid #334155;font-size:12px;cursor:pointer}
+.tab.active{background:var(--gold);color:#000;font-weight:900}
+.wrap{height:100vh;padding-top:66px;display:flex;justify-content:center;align-items:center;padding-bottom:50px}
+.slide{position:relative;width:95%;max-width:1480px;min-height:80vh;background:#1e293bcc;border:3px solid var(--gold);border-radius:24px;overflow:hidden;display:flex}
+.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.18;filter:blur(1px);z-index:0}
+.logo-wm{position:absolute;right:18px;top:14px;width:86px;height:86px;opacity:0.15;z-index:1;background:#fff;border-radius:14px;padding:4px}
+.slide-left{position:relative;z-index:2;flex:1;padding:20px 28px;display:flex;flex-direction:column;justify-content:center}
+.slide-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;background:#ffffff18;padding:6px 12px;border-radius:12px;border:1px solid #ffffff33}
+.slide-top img{width:52px;height:52px;background:#fff;border-radius:10px;padding:3px}
+.school b{color:var(--gold);font-size:14px}
+.soal{font-size:40px;font-weight:800;line-height:1.28;text-shadow:0 2px 14px rgba(0,0,0,0.9)}
+.slide-right{position:relative;z-index:2;width:350px;background:linear-gradient(180deg,#1e293b,#0f172a);border-left:3px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;gap:12px}
+.timer-label{font-weight:900;letter-spacing:2px;font-size:18px;color:var(--gold);text-align:center}
+.timer{font-size:112px;font-weight:900;line-height:1;background:#000;border:5px solid var(--gold);border-radius:20px;padding:10px 26px;min-width:180px;text-align:center;color:var(--gold)}
+.timer.warn{border-color:var(--danger);color:var(--danger);background:#450a0a;animation:blink 0.5s infinite}
+@keyframes blink{50%{transform:scale(1.07)}}
+.btn-timer{padding:12px 14px;border-radius:12px;border:none;font-weight:900;cursor:pointer;font-size:13px;width:100%}
+.btn-start{background:#22c55e;color:#052e16}.btn-pause{background:var(--gold);color:#000}.btn-reset{background:#334155;color:#fff}.btn-audio{background:#0f172a;color:var(--gold);border:1px solid var(--gold)}
+.jawab{margin-top:12px;padding:12px;background:#052e16cc;border:2px solid #22c55e;border-radius:12px;font-size:22px;color:#4ade80;display:none;font-weight:800}
+.jawab.show{display:block}
+.btns{margin-top:12px;display:flex;gap:8px}
+.btn{padding:10px 16px;border-radius:10px;border:none;font-weight:800;cursor:pointer}
+.btn-next{background:var(--gold);color:#000}.btn-prev{background:#334155;color:#fff}.btn-ans{background:#22c55e;color:#052e16}
+.footer-guru{position:fixed;bottom:0;left:0;right:0;background:#0b1220f2;border-top:2px solid var(--gold);padding:7px;text-align:center;z-index:30;display:flex;justify-content:center;align-items:center;gap:10px}
+.footer-guru img{width:30px;height:30px;background:#fff;border-radius:8px;padding:2px}
+.footer-guru p{margin:0;font-size:11px;font-weight:700}.footer-guru span{color:var(--gold)}
+@media(max-width:900px){.slide{flex-direction:column}.slide-right{width:100%;border-left:none;border-top:3px solid var(--gold);flex-direction:row;flex-wrap:wrap}.timer{font-size:66px;min-width:110px}.soal{font-size:24px}}
+</style></head><body>
+<div class="header"><div class="logo-head"><img src="logo_sma3.png" onerror="this.src='logo_small.png'"><h1>SMAN3 BRILLIANT - KODE 3</h1></div><div class="tabs" id="tabs"></div></div>
+<div class="wrap"><div class="slide"><div class="slide-bg" id="bg"></div><img class="logo-wm" src="logo_sma3.png" onerror="this.src='logo_small.png'">
+<div class="slide-left"><div class="slide-top"><img src="logo_sma3.png" onerror="this.src='logo_small.png'"><div class="school"><b>SMA NEGERI 3 BORONG - KODE 3</b><div id="paketLabel">3 WAJIB + 1 REBUTAN BARU • 30 DETIK SEMUA</div></div></div><div class="soal" id="soal"></div><div class="jawab" id="jawab"></div><div class="btns"><button class="btn btn-prev" onclick="prev()">◀</button><button class="btn btn-ans" onclick="toggleAns()">Jawaban (Spasi)</button><button class="btn btn-next" onclick="next()">▶</button></div></div>
+<div class="slide-right"><div class="timer-label">SMAN3 BRILLIANT</div><div class="timer" id="timer">30</div><div id="statusTimer" style="font-weight:800;color:#22c55e;font-size:13px">SIAP - ENTER=START</div><button class="btn-timer btn-start" onclick="startTimer()">▶ START + DING</button><button class="btn-timer btn-pause" onclick="pauseTimer()">⏸ PAUSE</button><button class="btn-timer btn-reset" onclick="resetTimer()">🔄 RESET 30</button><button class="btn-timer btn-audio" onclick="toggleAudio()" id="btnAudio">🔊 AUDIO: ON</button><div style="font-size:10px;opacity:0.6;text-align:center">KODE 3 • 3 Wajib + 1 Rebutan Baru</div></div>
+</div></div>
+<div class="footer-guru"><img src="logo_sma3.png" onerror="this.src='logo_small.png'"><p><span>SMA NEGERI 3 BORONG - BRILLIANT | Guru:</span> Damasus Hans Satu, S.Pd.Gr. dan Erlina Sofia Daima, S.Pd.,Gr.</p></div>
+<script>
+const imageFiles = ["gambar (0).jpg","gambar (1).jpg","gambar (2).jpg","gambar (3).jpg","gambar (4).jpg","gambar (5).jpg","gambar (6).jpg","gambar (7).jpg","gambar (8).jpg","gambar (9).jpg","gambar (10).jpg","gambar (11).jpg","gambar (12).jpg","gambar (13).jpg","gambar (14).jpg","gambar (15).jpg","gambar (16).jpg"];
+const packages = [
+{"nama":"PAKET 1 - WAJIB","soal":["Bentuk persen dari 2/5 adalah...|40%","Hasil 1/2 x 2/3 + 3/4 adalah...|13/12","Jika 8p+5q dikurangkan 2p-4q, p=2 q=1 hasilnya?|21","Sudut pusat AOB=84 derajat, sudut keliling APB menghadap busur sama?|42 derajat","Himpunan semua hasil yang mungkin dari percobaan disebut...|Ruang Sampel","Nilai x dari 2x + 5 = 17?|6","Data ayam Ibu Rina: Sen 55, Sel 45, Rab 25, Kam 35, Jum 50, Sab 75, Ming 80. Rata-rata?|52,14 kg","Garis yang tidak punya titik awal & akhir disebut?|Garis","Penyiku sudut 35 derajat?|55 derajat","Kebun persegi panjang p=15m l=9m, keliling & luas?|K=48m, L=135m"]},
+{"nama":"PAKET 2 - WAJIB","soal":["Jumlah murid SMA N 3 Borong: A30,B25,C35,D28,E32. Total?|150","Jika 3z +5 = 2z +8 maka z?|z=3","Hasil 81^3/4 adalah...|27","Hasil 16^1/4 + 32^1/5 adalah...|4","Jika x=5 dan y=3, nilai 2x + 4y?|22","2/3+1/3=1?|Benar","Rima goreng 210 ikan,122 ayam,120 telur + stok 60 ikan,55 ayam. Terjual 190 ikan,110 ayam,95 telur. Sisa?|Ikan 80, Ayam 67, Telur 25","Tangga 5m bersandar, kaki ke tembok 3m, tinggi tembok?|4m","Balok p=40 l=20 t=30, volume?|24.000 cm3","Segitiga siku-siku 6cm & 8cm, sisi miring?|10cm"]},
+{"nama":"PAKET 3 - WAJIB","soal":["Besar sudut jam pukul 15.00?|90 derajat","Ibu punya 3/4 liter minyak, dipakai 1/8 liter, sisa?|5/8 liter","Hasil 5^0 +2^-1 +3^-1 adalah...|11/6","Andi bagi semangka: Agus 1/4, Beni 1/4, sisa Mukti?|1/2","Persegi panjang 12cm x5cm, diagonal?|13cm","Modus data 72,69,63,72,79,77,67,65 adalah...|72","Jika a=2 dan b=-3, nilai 2a^2 - ab + b^2?|23","Hasil 7^5 / 7^3 adalah...|49","Pecahan senilai 56/128 adalah...|7/16","Diameter 16cm, jari-jari?|8cm"]},
+{"nama":"PAKET 4 - REBUTAN BARU - BEDA KODE 1 & 2","soal":["REBUTAN KODE 3 - 1: Hasil 4^4 . 4^-2 adalah...|16","REBUTAN KODE 3 - 2: Nilai (-5)^3 adalah...|-125","REBUTAN KODE 3 - 3: Bentuk paling sederhana 8/12 adalah...|2/3","REBUTAN KODE 3 - 4: Jika 2x + 3 = 13, nilai x?|x=5","REBUTAN KODE 3 - 5: Persamaan 2x +5y=14 dan x=2, nilai y?|y=2","REBUTAN KODE 3 - 6: Benar/Salah: 3a + 4b -2a + b = a + 5b?|Benar","REBUTAN KODE 3 - 7: Hasil 1 3/4 + 2 2/5 adalah...|83/20","REBUTAN KODE 3 - 8: Pak Riski punya tanah: 1/3 rumah, 2/5 kebun, sisa 120 m2 kolam. Total luas?|450 m2","REBUTAN KODE 3 - 9: Rata-rata tinggi 8 siswa 170cm dan 12 siswa 165cm, rata-rata seluruh?|167 cm","REBUTAN KODE 3 - 10 FINAL: Dadu dilempar 1x, peluang muncul ganjil?|1/2"]}
+];
+let curPaket=0,curSoal=0,timeLeft=30,timerInterval=null,isRunning=false,audioOn=true,audioCtx=null;
+function initAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();}
+function beep(f,d,t,v){if(!audioOn)return;initAudio();const o=audioCtx.createOscillator();const g=audioCtx.createGain();o.frequency.value=f;o.type=t||'sine';g.gain.value=v||0.3;o.connect(g);g.connect(audioCtx.destination);o.start();g.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+d);o.stop(audioCtx.currentTime+d);}
+function playStart(){beep(880,0.3,'sine',0.4);setTimeout(()=>beep(1320,0.4,'sine',0.4),150);}
+function playTick(){beep(1000,0.15,'square',0.2);}
+function playWarning(){beep(1200,0.2,'square',0.3);}
+function playEnd(){beep(440,0.8,'sawtooth',0.5);setTimeout(()=>beep(330,1.2,'sawtooth',0.5),300);}
+function toggleAudio(){audioOn=!audioOn;document.getElementById('btnAudio').textContent=audioOn?'🔊 AUDIO: ON':'🔇 AUDIO: OFF';}
+function getImg(p,s){let seed=p*137+s*71+13;seed=(seed*9301+49297)%233280;return imageFiles[seed%imageFiles.length];}
+function renderTabs(){const t=document.getElementById('tabs');t.innerHTML='';packages.forEach((p,i)=>{const d=document.createElement('div');d.className='tab'+(i===curPaket?' active':'');d.textContent=p.nama;d.onclick=()=>{curPaket=i;curSoal=0;renderTabs();render();};t.appendChild(d);});}
+function updateTimer(){const el=document.getElementById('timer');const st=document.getElementById('statusTimer');el.textContent=timeLeft<=0?'HABIS':timeLeft;if(timeLeft<=5&&timeLeft>0){el.classList.add('warn');st.textContent='HAMPIR HABIS! '+timeLeft;st.style.color='#ef4444';if(isRunning)playTick();}else if(timeLeft<=0){el.classList.add('warn');st.textContent='WAKTU HABIS!';}else{el.classList.remove('warn');st.textContent=isRunning?'BERJALAN 30 DETIK...':'SMAN3 BRILLIANT - SIAP 30 DETIK';st.style.color='#22c55e';}}
+function startTimer(){if(isRunning)return;initAudio();playStart();isRunning=true;updateTimer();timerInterval=setInterval(()=>{timeLeft--;updateTimer();if(timeLeft<=5&&timeLeft>0)playWarning();if(timeLeft<=0){clearInterval(timerInterval);isRunning=false;updateTimer();playEnd();}},1000);}
+function pauseTimer(){clearInterval(timerInterval);isRunning=false;updateTimer();}
+function resetTimer(){pauseTimer();timeLeft=30;updateTimer();}
+function render(){const raw=packages[curPaket].soal[curSoal];const parts=raw.split('|');document.getElementById('soal').textContent=parts[0].trim();document.getElementById('jawab').textContent='Jawaban: '+(parts[1]||'').trim();document.getElementById('jawab').classList.remove('show');document.getElementById('bg').style.backgroundImage=`url('${getImg(curPaket,curSoal)}')`;document.getElementById('paketLabel').textContent=`${packages[curPaket].nama} • Soal ${curSoal+1}/${packages[curPaket].soal.length} • 30 DETIK • BEDA DARI KODE 1 & 2`;resetTimer();}
+function next(){const p=packages[curPaket];if(curSoal<p.soal.length-1)curSoal++;else if(curPaket<packages.length-1){curPaket++;curSoal=0;renderTabs();}render();}
+function prev(){if(curSoal>0)curSoal--;else if(curPaket>0){curPaket--;curSoal=packages[curPaket].soal.length-1;renderTabs();}render();}
+function toggleAns(){document.getElementById('jawab').classList.toggle('show');}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();if(e.key===' '){e.preventDefault();toggleAns();}if(e.key==='Enter'){isRunning?pauseTimer():startTimer();}});
+renderTabs();render();
+</script></body></html>
